@@ -1,55 +1,45 @@
-# 🚀 2026 Weekly Engineering Sprint
-> A commitment to consistency, documenting 52 weeks of technical growth and code mastery.
+# 🚀 Weekly Engineering Sprint: 2026
+> **Current Phase:** 🔍 Research & Skill Discovery (January)
+> **Launch Date:** February 1st, 2026
 
-![License](https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge)
-![Year](https://img.shields.io/badge/Year-2026-blue?style=for-the-badge)
-![Progress](https://img.shields.io/badge/Progress-2/52-orange?style=for-the-badge)
-
----
-
-## ⚡ Current Focus
-**Week 02:** *[Insert Project Name, e.g., Real-time Chat Engine]*
-* **Goal:** [Briefly describe the objective]
-* **Daily Streak:** 🔥 4 Days
-* **Status:** 🟡 In Progress
-
-[View Current Folder](./2026/week-02) | [Open Issue Tracker](../../issues)
+![Status](https://img.shields.io/badge/Status-Research_Phase-blueviolet?style=for-the-badge)
+![Launch](https://img.shields.io/badge/Launch-Feb_2026-orange?style=for-the-badge)
 
 ---
 
-## 📊 The Roadmap
-Below is the master log of all challenges completed this year.
+## 📅 The January Roadmap: Research & Prep
+*Before building, I am dedicating this month to deep-diving into the "Why" and "How" of my 2026 stack.*
 
-| Week | Challenge | Tech Stack | Artifacts | Status |
-| :--- | :--- | :--- | :--- | :--- |
-| **02** | **Full-Stack Dashboard** | React, Tailwind | [View Source](./2026/week-02) | 🏃 Working... |
-| 01 | Binary Search Tree Visualizer | Python, Pygame | [View Source](./2026/week-01) | ✅ Finished |
-
----
-
-## 🛠️ Tech Stack Inventory
-Throughout this year, I am aiming to touch the following technologies:
-* **Languages:** TypeScript, Go, Python, Rust
-* **Infrastructure:** Docker, AWS (Lambda/S3), GitHub Actions
-* **Database:** PostgreSQL, Redis, MongoDB
+- [ ] **Week 01:** Identify Tech Gaps (System Design vs. New Languages)
+- [ ] **Week 02:** Tech Stack Selection (Rust vs. Go? Next.js vs. Astro?)
+- [ ] **Week 03:** Architecture Planning (Defining the "Gold Standard" for my challenge folders)
+- [ ] **Week 04:** Finalizing the 12-Week Sprint List
 
 ---
 
-## 📝 The Challenge Rules
-1. **Timeframe:** Every challenge begins Monday at 08:00 and must be committed by Sunday at 23:59.
-2. **Definition of Done:** The code must run, include a basic README, and have at least one unit test.
-3. **No Skips:** If a week is missed, the next week must be a "Deep Dive" into why the blocker occurred.
+## 🏗️ 2026 Challenge Log
+| Week | Project | Tech Stack | Status |
+| :--- | :--- | :--- | :--- |
+| 01-04 | **The Lab (Research)** | N/A | 🔍 Investigating |
+| 05 | *First Project* | *TBD* | 🕒 Coming Feb 1 |
 
 ---
 
-## 📈 Growth Stats
-* **Total Lines Written:** [Use a tool like Tokei or manually update]
-* **Top Language:** [e.g., TypeScript]
-* **Most Used Concept:** [e.g., Asynchronous Programming]
+## 🔭 Learning Objectives for January
+*What I am currently researching to prepare for the February start:*
+
+1. **System Design:** Understanding scalable patterns before I write my first line of code.
+2. **DevOps:** Setting up a "Base Template" with GitHub Actions to automate my weekly testing.
+3. **New Horizons:** Evaluating **[Insert Language/Tool]** for its performance benefits.
 
 ---
 
-<p align="center">
-  <i>"Consistency is the playground of excellence."</i> <br>
-  Follow along by starring this repo! ⭐
-</p>
+## 🛠️ The Challenge "Definition of Done"
+*Starting February, every project must meet these criteria:*
+* ✅ Fully documented `README.md`
+* ✅ Error handling and Edge-case coverage
+* ✅ 1-minute video demo or GIF of the final result
+* ✅ "Lessons Learned" post-mortem
+
+---
+<p align="center"><i>Building the foundation today for the code of tomorrow.</i></p>
