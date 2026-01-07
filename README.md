@@ -1,7 +1,7 @@
 # 🚀 2026 Polyglot Engineering Journey
 > **Mastering the Stack, Expanding the Horizon, and Building the Future.**
 
-![Yearly Progress](https://img.shields.io/badge/Progress-Jan_Research-blueviolet?style=for-the-badge)
+![Yearly Progress](https://img.shields.io/badge/Progress-Jan_Preparation-blueviolet?style=for-the-badge)
 ![Season](https://img.shields.io/badge/Current_Season-🌸_Spring_Mastery-green?style=for-the-badge)
 
 ---
