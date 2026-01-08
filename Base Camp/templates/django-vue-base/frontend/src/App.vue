@@ -4,11 +4,9 @@
       <router-link to="/" class="brand">Vue 3 + Vite + Django</router-link>
       <router-link to="/" class="link" active-class="active" exact-active-class="active">Home</router-link>
       <router-link to="/about" class="link" active-class="active">About</router-link>
-      <router-link to="/blogs" class="link" active-class="active">Blogs</router-link>
       <router-link v-if="showAdminLink" to="/admin" class="link" active-class="active">Admin</router-link>
       <div class="spacer" />
       <template v-if="auth.isAuthenticated">
-        <router-link to="/blogs/my" class="link" active-class="active">My Blogs</router-link>
         <span class="user">Hello, {{ auth.user?.first_name || auth.user?.username || auth.user?.email }}</span>
         <button class="link like-button" @click="onLogout">Logout</button>
       </template>
