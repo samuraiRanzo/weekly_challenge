@@ -32,3 +32,6 @@ class UserView(APIView):
 
     def get(self, request):
         return Response(UserSerializer(request.user).data)
+
+def hello(request):
+    return JsonResponse({"message": "Hello from the Clean Slate Backend!"})
