@@ -1,23 +1,27 @@
 <template>
-  <div>
-    <nav class="nav">
-      <router-link to="/" class="brand">Vue 3 + Vite + Django</router-link>
-      <router-link to="/" class="link" active-class="active" exact-active-class="active">Home</router-link>
-      <router-link to="/about" class="link" active-class="active">About</router-link>
-      <router-link v-if="showAdminLink" to="/admin" class="link" active-class="active">Admin</router-link>
-      <div class="spacer" />
-      <template v-if="auth.isAuthenticated">
-        <span class="user">Hello, {{ auth.user?.first_name || auth.user?.username || auth.user?.email }}</span>
-        <button class="link like-button" @click="onLogout">Logout</button>
-      </template>
-      <template v-else>
-        <router-link to="/login" class="link" active-class="active">Login</router-link>
-        <router-link to="/register" class="link" active-class="active">Register</router-link>
-      </template>
+  <div class="min-h-screen">
+    <nav class="border-b border-slate-700 bg-roadmap-card/50 backdrop-blur-md sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <router-link to="/" class="flex items-center gap-2">
+          <span class="text-xl font-bold tracking-tighter text-roadmap-accent">🚀 LOG_2026</span>
+          <span class="hidden md:inline border-l border-slate-600 pl-2 text-slate-400 font-medium">Polyglot Journey</span>
+        </router-link>
+
+        <div class="flex items-center gap-6">
+          <router-link to="/" class="text-sm font-medium hover:text-roadmap-accent transition-colors">Home</router-link>
+          <div class="h-4 w-px bg-slate-700 mx-2"></div>
+          <template v-if="auth.isAuthenticated">
+            <span class="text-xs text-slate-400">User: <b class="text-slate-200">{{ auth.user?.username }}</b></span>
+            <button @click="auth.logout()" class="text-sm text-red-400 hover:text-red-300">Logout</button>
+          </template>
+          <template v-else>
+            <router-link to="/login" class="text-sm font-medium hover:text-roadmap-accent">Login</router-link>
+            <router-link to="/register" class="bg-roadmap-accent text-roadmap-dark px-4 py-1.5 rounded-lg text-sm font-bold">Join</router-link>
+          </template>
+        </div>
+      </div>
     </nav>
-    <main class="container">
-      <router-view />
-    </main>
+    <main class="max-w-7xl mx-auto px-4 py-8"><router-view /></main>
   </div>
 </template>
 
