@@ -2,8 +2,6 @@ from django.urls import path
 from .views import (
     AdminLoginView,
     AdminMeView,
-    AdminBlogListCreateView,
-    AdminBlogDetailView,
 )
 
 urlpatterns = [
