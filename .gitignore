@@ -1,3 +1,25 @@
-.env
-.idea
-.venv
+# --- IDEs and OS ---
+.idea/                 # JetBrains (PyCharm/WebStorm) project settings
+.vscode/               # VS Code settings
+.DS_Store              # macOS specific
+Thumbs.db              # Windows specific
+
+# --- Python / Django ---
+**/__pycache__/        # Compiled Python files
+**/*.pyc               # Python bytecode
+**/.venv/              # Local virtual environments
+**/db.sqlite3          # Local SQLite databases
+**/staticfiles/        # Collected Django static files
+
+# --- Node / Frontend ---
+**/node_modules/       # Frontend dependencies
+**/dist/               # Production builds
+**/.eslintcache        # Linting cache
+
+# --- Environment and Secrets ---
+.env                   # Local environment variables
+**/.env                # Catch-all for sub-project env files
+secrets/               # Any local secret folders
+
+# --- Docker ---
+**/*.log               # Log files from containers

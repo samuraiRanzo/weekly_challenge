@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # --- Configuration ---
+# These variables define where the boilerplate lives and where the knowledge base is.
 SEASON=$1
 WEEK=$2
 PROJECT_NAME=$3
@@ -8,6 +9,7 @@ TEMPLATE_DIR="./templates/django-vue-base"
 KB_CHECKLIST="../../Base Camp/knowledge-base/django-postgres-checklist.md"
 
 # --- Validation ---
+# Ensure all required arguments are provided before proceeding.
 if [ -z "$PROJECT_NAME" ]; then
     echo "❌ Error: Missing arguments."
     echo "Usage: ./init-challenge.sh [Season] [Week] [Project-Name]"
@@ -15,16 +17,17 @@ if [ -z "$PROJECT_NAME" ]; then
     exit 1
 fi
 
-TARGET_DIR="./$SEASON/$WEEK-$PROJECT_NAME"
+TARGET_DIR="../$SEASON/$WEEK-$PROJECT_NAME"
 
-# --- Interactive Input ---
+# --- Interactive Goal Setting ---
+# Prompting for a goal ensures your weekly README is specific to the task at hand.
 echo "📝 What is the primary goal for $WEEK?"
 read -p "> " WEEKLY_GOAL
 
 # --- Execution ---
 echo "🚀 Initializing: $WEEK | $PROJECT_NAME..."
 
-# 1. Create Season/Week directory
+# 1. Create Season/Week directory if it doesn't already exist.
 if [ -d "$TARGET_DIR" ]; then
     echo "⚠️  Warning: $TARGET_DIR already exists. Skipping creation."
 else
@@ -32,24 +35,27 @@ else
     echo "📁 Created folder: $TARGET_DIR"
 fi
 
-# 2. Copy the Clean Slate Boilerplate (excluding junk)
-# This assumes you have already stripped the Blog logic from TEMPLATE_DIR
-echo "📦 Injecting Clean Slate Boilerplate (Auth Only)..."
+# 2. Copy the Clean Slate Boilerplate
+# This copies your Auth-only backend, Vite frontend, and docker-compose setup while excluding local junk.
+echo "📦 Injecting Clean Slate Boilerplate (Auth-Only + Docker Compose)..."
 rsync -av --quiet "$TEMPLATE_DIR/" "$TARGET_DIR" \
     --exclude .git \
     --exclude node_modules \
     --exclude .venv \
     --exclude __pycache__ \
     --exclude db.sqlite3 \
-    --exclude "*.pyc"
+    --exclude "*.pyc" \
+    --exclude .idea
 
 # 3. Setup Environment Files
+# Copies the template .env.example to a live .env file for local use.
 if [ -f "$TARGET_DIR/.env.example" ]; then
     cp "$TARGET_DIR/.env.example" "$TARGET_DIR/.env"
     echo "✅ Created .env from .env.example"
 fi
 
-# 4. Generate the Weekly README with Knowledge Base Links
+# 4. Generate the Weekly README
+# This creates a tailored guide including your goal and a link to your optimization checklist.
 echo "📝 Customizing Weekly README..."
 cat <<EOT > "$TARGET_DIR/README.md"
 # $WEEK: ${PROJECT_NAME//-/ }
@@ -64,17 +70,17 @@ $WEEKLY_GOAL
 - **Frontend:** Vue 3 (Vite + Pinia)
 - **Backend:** Django REST Framework (Custom User Auth)
 - **Database:** PostgreSQL
-- **Security:** JWT (SimpleJWT)
+- **Orchestration:** Docker Compose
 
 ## 📅 Refactor Schedule
 - **Monday-Wednesday:** Feature implementation.
-- **Thursday:** Use the [Optimization Checklist]($KB_CHECKLIST).
-- **Friday:** Launch and Demo.
+- **Thursday:** Use the [Optimization Checklist]($KB_CHECKLIST) to refactor and optimize.
+- **Friday:** Final testing and Launch.
 
 ## 🚦 Getting Started
 1. \`cd $SEASON/$WEEK-$PROJECT_NAME\`
 2. \`docker-compose up --build\`
-3. **Backend:** http://localhost:8000 | **Docs:** http://localhost:8000/api/docs/
+3. **Backend/API:** http://localhost:8000 | **Docs:** http://localhost:8000/api/docs/
 4. **Frontend:** http://localhost:5173
 EOT
 
@@ -85,5 +91,5 @@ echo "📍 Location: $TARGET_DIR"
 echo "💻 Next Steps:"
 echo "   1. cd \"$TARGET_DIR\""
 echo "   2. docker-compose up"
-echo "   3. Start coding in $TARGET_DIR/backend/core/models.py"
+echo "   3. Open the API docs to verify your Clean Slate setup!"
 echo "--------------------------------------------------------"

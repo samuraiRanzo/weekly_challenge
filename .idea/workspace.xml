@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6d64ca3b-59e0-4eb4-bfef-428145e40548" name="Changes" comment="update idea">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Base Camp/init-challenge.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Base Camp/init-challenge.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Base Camp/templates/django-vue-base/backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Base Camp/templates/django-vue-base/backend/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Base Camp/templates/django-vue-base/backend/admin_api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Base Camp/templates/django-vue-base/backend/admin_api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Base Camp/templates/django-vue-base/backend/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Base Camp/templates/django-vue-base/backend/config/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Base Camp/templates/django-vue-base/backend/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Base Camp/templates/django-vue-base/backend/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Base Camp/templates/django-vue-base/frontend/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Base Camp/templates/django-vue-base/frontend/vite.config.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="Dockerfile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;samuraiRanzo&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/samuraiRanzo/polyglot-engineer-roadmap.git&quot;,
+    &quot;accountId&quot;: &quot;1ca62169-0801-481f-94a8-1b4a26335b67&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="37vTSkMhd2LDy3l4biYsTmegzwi" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.Docker Image.executor": "Run",
+    "Docker.Unnamed.executor": "Run",
+    "Docker.Week-05-task-tracker.backend: Compose Deployment.executor": "Run",
+    "Docker.Week-05-task-tracker: Compose Deployment (1).executor": "Run",
+    "Docker.Week-05-task-tracker: Compose Deployment.executor": "Run",
+    "Docker.backend/Dockerfile.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHELLCHECK.PATH": "/home/ranzo/.local/share/JetBrains/PyCharm2025.3/Shell Script/shellcheck",
+    "ai.playground.ignore.import.keys.banner.in.settings": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/home/ranzo/Desktop/polyglot-engineer-roadmap",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true",
+    "ts.external.directory.path": "/snap/pycharm-professional/568/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Base Camp/templates/django-vue-base" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Docker.Week-05-task-tracker.backend: Compose Deployment">
+    <configuration name="Week-05-task-tracker: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="Base Camp/S1-Mastery/Week-05-task-tracker/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="Week-05-task-tracker.backend: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="backend" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="Base Camp/S1-Mastery/Week-05-task-tracker/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-image" temporary="true">
+      <deployment type="docker-image">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.Week-05-task-tracker.backend: Compose Deployment" />
+        <item itemvalue="Docker.Week-05-task-tracker: Compose Deployment" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PY-253.29346.142" />
+        <option value="bundled-python-sdk-f2b7a9f6281b-6e1f45a539f7-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.29346.142" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6d64ca3b-59e0-4eb4-bfef-428145e40548" name="Changes" comment="" />
+      <created>1767782547200</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1767782547200</updated>
+      <workItem from="1767782548735" duration="65000" />
+      <workItem from="1767782669845" duration="3713000" />
+      <workItem from="1767844633275" duration="105000" />
+      <workItem from="1767868148826" duration="3954000" />
+      <workItem from="1767872359738" duration="1670000" />
+    </task>
+    <task id="LOCAL-00001" summary="update idea">
+      <option name="closed" value="true" />
+      <created>1767784176953</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1767784176953</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update idea" />
+    <option name="LAST_COMMIT_MESSAGE" value="update idea" />
+  </component>
+</project>
