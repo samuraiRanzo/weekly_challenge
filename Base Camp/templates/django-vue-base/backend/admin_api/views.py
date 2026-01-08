@@ -5,8 +5,6 @@ from rest_framework.views import APIView
 from rest_framework.pagination import PageNumberPagination
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from core.models import Blog
-from core.serializers import BlogSerializer
 from .serializers import (
     AdminEmailTokenObtainPairSerializer,
     AdminBlogWriteSerializer,
