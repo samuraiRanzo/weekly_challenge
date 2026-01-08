@@ -3,7 +3,6 @@
     <h1>Admin Dashboard</h1>
     <p>Welcome, <strong>{{ admin.admin?.first_name || admin.admin?.username || admin.admin?.email }}</strong></p>
     <ul class="nav">
-      <li><router-link :to="{ name: 'admin-blogs' }">Manage Blogs</router-link></li>
       <li><button class="link" @click="onLogout">Logout</button></li>
     </ul>
   </div>
