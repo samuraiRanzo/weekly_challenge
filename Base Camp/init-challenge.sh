@@ -47,6 +47,29 @@ rsync -av --quiet "$TEMPLATE_DIR/" "$TARGET_DIR" \
     --exclude "*.pyc" \
     --exclude .idea
 
+# 2.5 Customize Frontend Brand Name
+echo "🎨 Personalizing frontend brand..."
+
+# Convert kebab-case to Title Case (e.g., task-tracker -> Task Tracker)
+FORMATTED_NAME=$(echo "$PROJECT_NAME" | sed -E 's/-/ /g; s/\b([a-z])/\U\1/g')
+
+# Path to App.vue and index.html
+APP_VUE_PATH="$TARGET_DIR/frontend/src/App.vue"
+INDEX_HTML_PATH="$TARGET_DIR/frontend/index.html"
+
+# Update App.vue navigation brand
+if [ -f "$APP_VUE_PATH" ]; then
+    sed -i "s|Vue 3 + Vite + Django|$FORMATTED_NAME|g" "$APP_VUE_PATH"
+    echo "✅ App.vue brand set to: $FORMATTED_NAME"
+fi
+
+# Update index.html browser tab title
+if [ -f "$INDEX_HTML_PATH" ]; then
+    # This targets the <title> tag specifically
+    sed -i "s|<title>Vue 3 + Vite</title>|<title>$FORMATTED_NAME</title>|g" "$INDEX_HTML_PATH"
+    echo "✅ index.html title set to: $FORMATTED_NAME"
+fi
+
 # 3. Setup Environment Files
 # Copies the template .env.example to a live .env file for local use.
 if [ -f "$TARGET_DIR/.env.example" ]; then
