@@ -4,9 +4,6 @@ from rest_framework import serializers
 from rest_framework.exceptions import PermissionDenied
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from core.models import Blog
-from core.serializers import BlogSerializer
-
 User = get_user_model()
 
 
