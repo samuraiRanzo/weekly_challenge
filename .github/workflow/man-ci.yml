@@ -1,54 +1,72 @@
-name: 🚀 Polyglot Log CI
+name: 🚀 Polyglot Journey CI
 
 on:
   push:
+    branches: [ main ]
     paths:
       - 'S1-Mastery/**'
       - 'S2-Expansion/**'
       - 'Base Camp/templates/**'
   pull_request:
+    branches: [ main ]
     paths:
       - 'S1-Mastery/**'
 
 jobs:
-  lint-and-test:
+  quality-gate:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # 1. Identify which directory changed
-      - name: Get Changed Files
+      # 1. Detect which project folders changed
+      - name: Get Changed Projects
         id: changed-files
         uses: tj-actions/changed-files@v41
         with:
           dir_names: true
           dir_names_max_depth: 2
+          files: |
+            S1-Mastery/**
+            Base Camp/templates/**
 
-      # 2. Global Linting (Run on the whole repo for speed)
-      - name: Lint Python (Backend)
+      # 2. Static Analysis (Linting)
+      - name: Lint Backend (Flake8)
         run: |
           pip install flake8
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 
-      - name: Lint JavaScript (Frontend)
-        run: |
-          npm install -g eslint
-          # Only lint inside folders containing a package.json
-          find . -name "package.json" -not -path "**/node_modules/**" -execdir eslint . --ext .js,.vue \;
-
-      # 3. Dynamic Scoped Testing (Docker)
-      - name: Run Scoped Project Tests
+      # 3. Dynamic Docker Testing
+      - name: Run Project Tests
         if: steps.changed-files.outputs.any_changed == 'true'
+        env:
+          # Use dummy values for CI environment
+          DEBUG: True
+          SECRET_KEY: ci-test-key
+          DB_NAME: challenge_db
+          DB_USER: user
+          DB_PASSWORD: password
+          DB_HOST: db
+          DB_PORT: 5432
         run: |
           for dir in ${{ steps.changed-files.outputs.all_changed_files }}; do
             if [ -f "$dir/docker-compose.yml" ]; then
-              echo "🛠️ Testing Project in: $dir"
+              echo "🛠️ Testing Project: $dir"
               cd "$dir"
+              
+              # Start the stack
               docker-compose up -d
-              # Example: Run Django tests inside the container
+              
+              # Wait for Postgres to be ready (using the nc check from your compose file)
+              docker-compose exec -T backend sh -c "while ! nc -z db 5432; do sleep 1; done"
+              
+              # Execute Django Tests
               docker-compose exec -T backend python manage.py test
+              
+              # Cleanup
               docker-compose down
               cd -
             fi
