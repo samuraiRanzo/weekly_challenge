@@ -4,67 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1eff34ef-71e7-44cb-b294-8d2be66f1603" name="Changes" comment="test for ci/cd">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/man-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/man-ci.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Base Camp/init-challenge.bat" beforeDir="false" afterPath="$PROJECT_DIR$/Base Camp/init-challenge.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Base Camp/init-challenge.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Base Camp/init-challenge.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/.env.example" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/.dockerignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/accounts/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/accounts/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/accounts/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/accounts/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/accounts/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/admin_api/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/admin_api/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/admin_api/serializers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/admin_api/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/admin_api/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/config/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/config/asgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/config/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/config/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/config/wsgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/core/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/core/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/core/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/core/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/core/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/core/serializers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/core/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/core/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/core/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/manage.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/backend/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/docker-compose.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/frontend/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/frontend/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/frontend/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/frontend/postcss.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/frontend/src/App.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/frontend/src/api.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/frontend/src/assets/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/frontend/src/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/frontend/src/router/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/frontend/src/services/adminAuth.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/frontend/src/services/auth.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/frontend/src/services/http.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/frontend/src/stores/admin.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/frontend/src/stores/auth.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/frontend/src/stores/hello.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/frontend/src/views/AboutView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/frontend/src/views/HomeView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/frontend/src/views/LoginView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/frontend/src/views/RegisterView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/frontend/src/views/admin/AdminDashboardView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/frontend/src/views/admin/AdminLoginView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/frontend/tailwind.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/S1-Mastery/Week-05-task-tracker/frontend/vite.config.js" beforeDir="false" />
-    </list>
+    <list default="true" id="1eff34ef-71e7-44cb-b294-8d2be66f1603" name="Changes" comment="update init-challenge.sh and init-challenge.bat" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -131,7 +71,7 @@
       <option name="presentableId" value="Default" />
       <updated>1767920432208</updated>
       <workItem from="1767920434532" duration="2683000" />
-      <workItem from="1767923902253" duration="4439000" />
+      <workItem from="1767923902253" duration="4739000" />
     </task>
     <task id="LOCAL-00001" summary="update README.md">
       <option name="closed" value="true" />
@@ -221,7 +161,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767929744697</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="update init-challenge.sh and init-challenge.bat">
+      <option name="closed" value="true" />
+      <created>1767930308239</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1767930308239</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,6 +185,7 @@
     <MESSAGE value="update tests.py" />
     <MESSAGE value="remove test challenge" />
     <MESSAGE value="test for ci/cd" />
-    <option name="LAST_COMMIT_MESSAGE" value="test for ci/cd" />
+    <MESSAGE value="update init-challenge.sh and init-challenge.bat" />
+    <option name="LAST_COMMIT_MESSAGE" value="update init-challenge.sh and init-challenge.bat" />
   </component>
 </project>
