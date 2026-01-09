@@ -6,31 +6,34 @@
 .DS_Store              # macOS specific
 Thumbs.db              # Windows specific
 *.swp                  # Vim swap files
+# --- Python / Django (Recursive) ---
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/.venv/
+**/venv/
+**/env/
+**/.env
+**/db.sqlite3
+**/staticfiles/
+**/media/
+**/.pytest_cache/
+**/.coverage
 
-# --- Python / Django ---
-**/__pycache__/        # Compiled Python files
-**/*.pyc               # Python bytecode
-**/*.pyo               # Optimized Python bytecode
-**/*.pyd               # Python DLLs
-**/.venv/              # Local virtual environments
-**/venv/               # Alternative venv naming
-**/db.sqlite3          # Local SQLite databases
-**/db.sqlite3-journal  # SQLite write-ahead logs
-**/staticfiles/        # Collected Django static files
-**/media/              # User-uploaded media files
-**/htmlcov/            # Coverage reports
-**/.pytest_cache/      # Pytest cache
-**/.coverage           # Coverage data
-**/.cache/             # General purpose cache
+# --- Node / Frontend (Recursive) ---
+**/node_modules/
+**/dist/
+**/.eslintcache
+**/npm-debug.log*
+**/.vite/
+**/package-lock.json*
 
-# --- Node / Frontend ---
-**/node_modules/       # Frontend dependencies
-**/dist/               # Production builds
-**/.eslintcache        # Linting cache
-**/npm-debug.log* # npm error logs
-**/yarn-debug.log* # Yarn error logs
-**/yarn-error.log* # Yarn error logs
-**/.vite/              # Vite internal cache
+# --- Template Specific Protection ---
+# This prevents local testing data in your 'Base Camp' from leaking into Git
+Base Camp/templates/**/node_modules/
+Base Camp/templates/**/.venv/
+Base Camp/templates/**/db.sqlite3
 
 # --- Environment and Secrets ---
 .env                   # Local root environment variables
