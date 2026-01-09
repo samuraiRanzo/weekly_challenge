@@ -1,0 +1,52 @@
+:root {
+  --term-bg: #0c0c0c;
+  --term-green: #00ff41; /* Classic Matrix Green */
+  --term-dim: #003b00;
+  --font-mono: 'Courier New', Courier, monospace;
+}
+
+body {
+  background-color: var(--term-bg);
+  color: var(--term-green);
+  font-family: var(--font-mono);
+  margin: 0;
+  overflow: hidden; /* Terminal feel */
+}
+
+/* CRT Scanline Overlay */
+body::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+              linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 2;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+.terminal-window {
+  padding: 2rem;
+  height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.prompt::before {
+  content: "ranzo@roadmap:~$ ";
+  color: var(--term-green);
+}
+
+a {
+  color: var(--term-bg);
+  background: var(--term-green);
+  padding: 0 4px;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+a:hover {
+  background: white;
+}

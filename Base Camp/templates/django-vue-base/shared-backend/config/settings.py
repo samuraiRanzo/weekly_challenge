@@ -6,7 +6,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-unsafe-key-for-dev')
 
 # Use the key from .env
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'backend', '0.0.0.0']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'shared-backend','backend', '0.0.0.0']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -21,9 +21,11 @@ INSTALLED_APPS = [
     'core',
     'drf_spectacular',
     'drf_spectacular_sidecar',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -32,7 +34,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
 ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
@@ -57,11 +62,11 @@ ASGI_APPLICATION = 'config.asgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
+        'NAME': os.environ.get('DB_NAME', 'coredb'),  # Fallback to coredb
+        'USER': os.environ.get('DB_USER', 'cadmin'),  # Fallback to cadmin
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'supersecret'),  # Fallback to supersecret
+        'HOST': os.environ.get('DB_HOST', 'db'),  # IMPORTANT: Default to 'db'
+        'PORT': os.environ.get('DB_PORT', '5432'),
     }
 }
 REST_FRAMEWORK = {
