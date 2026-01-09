@@ -1,0 +1,55 @@
+name: 🚀 Polyglot Log CI
+
+on:
+  push:
+    paths:
+      - 'S1-Mastery/**'
+      - 'S2-Expansion/**'
+      - 'Base Camp/templates/**'
+  pull_request:
+    paths:
+      - 'S1-Mastery/**'
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # 1. Identify which directory changed
+      - name: Get Changed Files
+        id: changed-files
+        uses: tj-actions/changed-files@v41
+        with:
+          dir_names: true
+          dir_names_max_depth: 2
+
+      # 2. Global Linting (Run on the whole repo for speed)
+      - name: Lint Python (Backend)
+        run: |
+          pip install flake8
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+      - name: Lint JavaScript (Frontend)
+        run: |
+          npm install -g eslint
+          # Only lint inside folders containing a package.json
+          find . -name "package.json" -not -path "**/node_modules/**" -execdir eslint . --ext .js,.vue \;
+
+      # 3. Dynamic Scoped Testing (Docker)
+      - name: Run Scoped Project Tests
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          for dir in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            if [ -f "$dir/docker-compose.yml" ]; then
+              echo "🛠️ Testing Project in: $dir"
+              cd "$dir"
+              docker-compose up -d
+              # Example: Run Django tests inside the container
+              docker-compose exec -T backend python manage.py test
+              docker-compose down
+              cd -
+            fi
+          done

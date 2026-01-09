@@ -3,23 +3,48 @@
 .vscode/               # VS Code settings
 .DS_Store              # macOS specific
 Thumbs.db              # Windows specific
+*.swp                  # Vim swap files
 
 # --- Python / Django ---
 **/__pycache__/        # Compiled Python files
 **/*.pyc               # Python bytecode
+**/*.pyo               # Optimized Python bytecode
+**/*.pyd               # Python DLLs
 **/.venv/              # Local virtual environments
+**/venv/               # Alternative venv naming
 **/db.sqlite3          # Local SQLite databases
+**/db.sqlite3-journal  # SQLite write-ahead logs
 **/staticfiles/        # Collected Django static files
+**/media/              # User-uploaded media files
+**/htmlcov/            # Coverage reports
+**/.pytest_cache/      # Pytest cache
+**/.coverage           # Coverage data
+**/.cache/             # General purpose cache
 
 # --- Node / Frontend ---
 **/node_modules/       # Frontend dependencies
 **/dist/               # Production builds
 **/.eslintcache        # Linting cache
+**/npm-debug.log* # npm error logs
+**/yarn-debug.log* # Yarn error logs
+**/yarn-error.log* # Yarn error logs
+**/.vite/              # Vite internal cache
 
 # --- Environment and Secrets ---
-.env                   # Local environment variables
+.env                   # Local root environment variables
 **/.env                # Catch-all for sub-project env files
+**/.env.local          # Local environment overrides
+**/.env.*.local        # Environment-specific local overrides
 secrets/               # Any local secret folders
+**/*.key               # Private keys
+**/*.pem               # Certificates
 
 # --- Docker ---
 **/*.log               # Log files from containers
+**/postgres_data/      # Local database volume data (if not using named volumes)
+.docker/               # Local docker config
+
+# --- CI/CD Artifacts ---
+**/test-results/       # Automated test results
+**/playwright-report/  # E2E test reports
+**/blob-report/        # CI report shards
