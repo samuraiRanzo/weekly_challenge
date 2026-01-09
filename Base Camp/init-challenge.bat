@@ -17,6 +17,13 @@ if "%PROJECT_NAME%"=="" (
     exit /b 1
 )
 
+:: Safety Check: Ensure we are in 'Base Camp' folder
+set CURRENT_DIR=%CD%
+if "!CURRENT_DIR:~-9!" NEQ "Base Camp" (
+    echo ❌ Error: Please run this script from inside the 'Base Camp' directory.
+    exit /b 1
+)
+
 set TARGET_DIR=..\!SEASON!\!WEEK!-!PROJECT_NAME!
 
 :: --- Interactive Goal Setting ---
@@ -34,31 +41,23 @@ if exist "!TARGET_DIR!" (
     echo 📁 Created folder: !TARGET_DIR!
 )
 
-:: 2. Copy Boilerplate (The Windows version of rsync)
+:: 2. Copy Boilerplate (Robocopy is the Windows equivalent of rsync)
 echo 📦 Injecting Clean Slate Boilerplate...
-:: /E copies subdirectories, /XD and /XF exclude specific folders and files
 robocopy "%TEMPLATE_DIR%" "!TARGET_DIR!" /E /XF .git node_modules .venv __pycache__ db.sqlite3 *.pyc /XD .git node_modules .venv __pycache__ .idea /NFL /NDL /NJH /NJS
 
-:: 2.5 Customize Frontend Brand Name (Title Case Logic)
+:: 2.5 Customize Frontend Brand Name
 echo 🎨 Personalizing frontend brand...
-
-:: Use PowerShell to convert kebab-case to Title Case (task-tracker -> Task Tracker)
 for /f "usebackq tokens=*" %%i in (`powershell -Command "(Get-Culture).TextInfo.ToTitleCase('%PROJECT_NAME%'.Replace('-', ' '))"`) do set FORMATTED_NAME=%%i
 
-:: Paths to files
 set APP_VUE_PATH=!TARGET_DIR!\frontend\src\App.vue
 set INDEX_HTML_PATH=!TARGET_DIR!\frontend\index.html
 
-:: Update App.vue brand using PowerShell Find/Replace
 if exist "!APP_VUE_PATH!" (
     powershell -Command "(Get-Content '!APP_VUE_PATH!') -replace 'Vue 3 \+ Vite \+ Django', '!FORMATTED_NAME!' | Set-Content '!APP_VUE_PATH!'"
-    echo ✅ App.vue brand set to: !FORMATTED_NAME!
 )
 
-:: Update index.html title
 if exist "!INDEX_HTML_PATH!" (
-    powershell -Command "(Get-Content '!INDEX_HTML_PATH!') -replace '<title>Vue 3 \+ Vite</title>', '<title>!FORMATTED_NAME!</title>' | Set-Content '!INDEX_HTML_PATH!'"
-    echo ✅ index.html title set to: !FORMATTED_NAME!
+    powershell -Command "(Get-Content '!INDEX_HTML_PATH!') -replace '<title>Vue 3 \+ Vite</title>', '<title>!FORMATTED_NAME!' | Set-Content '!INDEX_HTML_PATH!'"
 )
 
 :: 3. Setup Environment Files
@@ -67,7 +66,7 @@ if exist "!TARGET_DIR!\.env.example" (
     echo ✅ Created .env from .env.example
 )
 
-:: 4. Generate the Weekly README
+:: 4. Generate the Weekly README (Updated for Docker Compose V2)
 echo 📝 Customizing Weekly README...
 (
 echo # %WEEK%: !FORMATTED_NAME!
@@ -81,24 +80,24 @@ echo.
 echo ## 🛠️ Stack
 echo - **Frontend:** Vue 3 (Vite + Pinia^)
 echo - **Backend:** Django REST Framework (Custom User Auth^)
-echo - **Database:** PostgreSQL
-echo - **Orchestration:** Docker Compose
+echo - **Database:** PostgreSQL 16
+echo - **Orchestration:** Docker Compose V2
 echo.
 echo ## 📅 Refactor Schedule
 echo - **Monday-Wednesday:** Feature implementation.
-echo - **Thursday:** Use the [Optimization Checklist](%KB_CHECKLIST%^) to refactor and optimize.
+echo - **Thursday:** Use the [Optimization Checklist](%KB_CHECKLIST%^) to refactor.
 echo - **Friday:** Final testing and Launch.
 echo.
 echo ## 🚦 Getting Started
 echo 1. \`cd %SEASON%/%WEEK%-%PROJECT_NAME%\`
-echo 2. \`docker-compose up --build\`
+echo 2. \`docker compose up --build\`
 ) > "!TARGET_DIR!\README.md"
 
-:: 5. Success Message
+:: 5. Success Message (Updated for Docker Compose V2)
 echo --------------------------------------------------------
 echo ✨ Setup Complete!
 echo 📍 Location: !TARGET_DIR!
 echo 💻 Next Steps:
 echo    1. cd "!TARGET_DIR!"
-echo    2. docker-compose up
+echo    2. docker compose up
 echo --------------------------------------------------------

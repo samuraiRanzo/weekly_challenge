@@ -42,32 +42,24 @@ jobs:
       # 3. Dynamic Docker Testing
       - name: Run Project Tests
         if: steps.changed-files.outputs.any_changed == 'true'
-        env:
-          # Use dummy values for CI environment
-          DEBUG: True
-          SECRET_KEY: ci-test-key
-          DB_NAME: challenge_db
-          DB_USER: user
-          DB_PASSWORD: password
-          DB_HOST: db
-          DB_PORT: 5432
+        # ... env variables ...
         run: |
           for dir in ${{ steps.changed-files.outputs.all_changed_files }}; do
             if [ -f "$dir/docker-compose.yml" ]; then
               echo "🛠️ Testing Project: $dir"
               cd "$dir"
               
-              # Start the stack
-              docker-compose up -d
+              # CHANGE: docker-compose -> docker compose
+              docker compose up -d
               
-              # Wait for Postgres to be ready (using the nc check from your compose file)
-              docker-compose exec -T backend sh -c "while ! nc -z db 5432; do sleep 1; done"
+              # Wait for Postgres
+              docker compose exec -T backend sh -c "while ! nc -z db 5432; do sleep 1; done"
               
               # Execute Django Tests
-              docker-compose exec -T backend python manage.py test
+              docker compose exec -T backend python manage.py test
               
               # Cleanup
-              docker-compose down
+              docker compose down
               cd -
             fi
           done

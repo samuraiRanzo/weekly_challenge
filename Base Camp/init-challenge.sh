@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # --- Configuration ---
-# These variables define where the boilerplate lives and where the knowledge base is.
 SEASON=$1
 WEEK=$2
 PROJECT_NAME=$3
@@ -9,7 +8,6 @@ TEMPLATE_DIR="./templates/django-vue-base"
 KB_CHECKLIST="../../Base Camp/knowledge-base/django-postgres-checklist.md"
 
 # --- Validation ---
-# Ensure all required arguments are provided before proceeding.
 if [ -z "$PROJECT_NAME" ]; then
     echo "❌ Error: Missing arguments."
     echo "Usage: ./init-challenge.sh [Season] [Week] [Project-Name]"
@@ -17,10 +15,15 @@ if [ -z "$PROJECT_NAME" ]; then
     exit 1
 fi
 
+# Ensure we are in the Base Camp folder to avoid pathing errors
+if [[ "$PWD" != *"/Base Camp" ]]; then
+    echo "❌ Error: Please run this script from inside the 'Base Camp' directory."
+    exit 1
+fi
+
 TARGET_DIR="../$SEASON/$WEEK-$PROJECT_NAME"
 
 # --- Interactive Goal Setting ---
-# Prompting for a goal ensures your weekly README is specific to the task at hand.
 echo "📝 What is the primary goal for $WEEK?"
 read -p "> " WEEKLY_GOAL
 
@@ -35,9 +38,8 @@ else
     echo "📁 Created folder: $TARGET_DIR"
 fi
 
-# 2. Copy the Clean Slate Boilerplate
-# This copies your Auth-only backend, Vite frontend, and docker-compose setup while excluding local junk.
-echo "📦 Injecting Clean Slate Boilerplate (Auth-Only + Docker Compose)..."
+# 2. Copy the Clean Slate Boilerplate using rsync
+echo "📦 Injecting Clean Slate Boilerplate..."
 rsync -av --quiet "$TEMPLATE_DIR/" "$TARGET_DIR" \
     --exclude .git \
     --exclude node_modules \
@@ -49,36 +51,26 @@ rsync -av --quiet "$TEMPLATE_DIR/" "$TARGET_DIR" \
 
 # 2.5 Customize Frontend Brand Name
 echo "🎨 Personalizing frontend brand..."
-
-# Convert kebab-case to Title Case (e.g., task-tracker -> Task Tracker)
 FORMATTED_NAME=$(echo "$PROJECT_NAME" | sed -E 's/-/ /g; s/\b([a-z])/\U\1/g')
 
-# Path to App.vue and index.html
 APP_VUE_PATH="$TARGET_DIR/frontend/src/App.vue"
 INDEX_HTML_PATH="$TARGET_DIR/frontend/index.html"
 
-# Update App.vue navigation brand
 if [ -f "$APP_VUE_PATH" ]; then
     sed -i "s|Vue 3 + Vite + Django|$FORMATTED_NAME|g" "$APP_VUE_PATH"
-    echo "✅ App.vue brand set to: $FORMATTED_NAME"
 fi
 
-# Update index.html browser tab title
 if [ -f "$INDEX_HTML_PATH" ]; then
-    # This targets the <title> tag specifically
     sed -i "s|<title>Vue 3 + Vite</title>|<title>$FORMATTED_NAME</title>|g" "$INDEX_HTML_PATH"
-    echo "✅ index.html title set to: $FORMATTED_NAME"
 fi
 
 # 3. Setup Environment Files
-# Copies the template .env.example to a live .env file for local use.
 if [ -f "$TARGET_DIR/.env.example" ]; then
     cp "$TARGET_DIR/.env.example" "$TARGET_DIR/.env"
     echo "✅ Created .env from .env.example"
 fi
 
-# 4. Generate the Weekly README
-# This creates a tailored guide including your goal and a link to your optimization checklist.
+# 4. Generate the Weekly README (Updated for Docker Compose V2)
 echo "📝 Customizing Weekly README..."
 cat <<EOT > "$TARGET_DIR/README.md"
 # $WEEK: ${PROJECT_NAME//-/ }
@@ -92,27 +84,27 @@ $WEEKLY_GOAL
 ## 🛠️ Stack
 - **Frontend:** Vue 3 (Vite + Pinia)
 - **Backend:** Django REST Framework (Custom User Auth)
-- **Database:** PostgreSQL
-- **Orchestration:** Docker Compose
+- **Database:** PostgreSQL 16
+- **Orchestration:** Docker Compose V2
 
 ## 📅 Refactor Schedule
 - **Monday-Wednesday:** Feature implementation.
-- **Thursday:** Use the [Optimization Checklist]($KB_CHECKLIST) to refactor and optimize.
+- **Thursday:** Use the [Optimization Checklist]($KB_CHECKLIST) to refactor.
 - **Friday:** Final testing and Launch.
 
 ## 🚦 Getting Started
 1. \`cd $SEASON/$WEEK-$PROJECT_NAME\`
-2. \`docker-compose up --build\`
-3. **Backend/API:** http://localhost:8000 | **Docs:** http://localhost:8000/api/docs/
+2. \`docker compose up --build\`
+3. **Backend/API:** http://localhost:8000
 4. **Frontend:** http://localhost:5173
 EOT
 
-# 5. Success Message
+# 5. Success Message (Updated for Docker Compose V2)
 echo "--------------------------------------------------------"
 echo "✨ Setup Complete!"
 echo "📍 Location: $TARGET_DIR"
 echo "💻 Next Steps:"
 echo "   1. cd \"$TARGET_DIR\""
-echo "   2. docker-compose up"
-echo "   3. Open the API docs to verify your Clean Slate setup!"
+echo "   2. docker compose up"
+echo "   3. Open the API docs to verify your setup!"
 echo "--------------------------------------------------------"
