@@ -1,5 +1,7 @@
 # --- IDEs and OS ---
-.idea/                 # JetBrains (PyCharm/WebStorm) project settings
+.idea/
+.IDEA/
+**/.idea/
 .vscode/               # VS Code settings
 .DS_Store              # macOS specific
 Thumbs.db              # Windows specific
