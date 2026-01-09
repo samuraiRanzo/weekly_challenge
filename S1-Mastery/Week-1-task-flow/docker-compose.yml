@@ -1,0 +1,41 @@
+services:
+  db:
+    image: postgres:16-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${DB_NAME:-coredb}
+      - POSTGRES_USER=${DB_USER:-cadmin}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-supersecret}
+
+  backend:
+    build: ./backend
+    volumes:
+      - ./backend:/code
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    # Wait for the DB to be ready before running migrations and starting the server
+    command: >
+      sh -c "while ! nc -z db 5432; do sleep 1; done &&
+             python manage.py makemigrations && 
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=http://localhost:8000/api/
+
+volumes:
+  postgres_data:
