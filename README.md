@@ -51,4 +51,11 @@ cd to the created folder:
 * **API Root**: `http://localhost:8000/api/`
 * **Intractive Docs**: `http://localhost:8000/api/docs/`
 
+> ### 🛡️ Engineering Habits Implemented
+>
+ >> * Live Observability: Heartbeat monitors in every shell to track API health.
+ >> * Clean Auth Flow: Automated silent refreshes and request-level token injection.
+ >> * Container Isolation: Zero dependency conflicts by running all shells in Alpine-based Node containers.
 
+---
+# **"The best way to predict the future is to build it."** _Maintained by_ [Ranzo]
