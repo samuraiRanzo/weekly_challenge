@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1eff34ef-71e7-44cb-b294-8d2be66f1603" name="Changes" comment="update init-challenge.sh and init-challenge.bat" />
+    <list default="true" id="1eff34ef-71e7-44cb-b294-8d2be66f1603" name="Changes" comment="update init-challenge.sh and init-challenge.bat">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/polyglot-engineer-roadmap.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,7 +78,7 @@
       <option name="presentableId" value="Default" />
       <updated>1767920432208</updated>
       <workItem from="1767920434532" duration="2683000" />
-      <workItem from="1767923902253" duration="4739000" />
+      <workItem from="1767923902253" duration="5041000" />
     </task>
     <task id="LOCAL-00001" summary="update README.md">
       <option name="closed" value="true" />
