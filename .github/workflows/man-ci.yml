@@ -46,19 +46,19 @@ jobs:
         run: |
           for dir in ${{ steps.changed-files.outputs.all_changed_files }}; do
             if [ -f "$dir/docker-compose.yml" ]; then
-              echo "🛠️ Testing Project: $dir"
               cd "$dir"
-              
-              # CHANGE: docker-compose -> docker compose
               docker compose up -d
               
-              # Wait for Postgres
+              # WAIT for DB
               docker compose exec -T backend sh -c "while ! nc -z db 5432; do sleep 1; done"
               
-              # Execute Django Tests
+              # FIX: Ensure migrations are generated before testing
+              docker compose exec -T backend python manage.py makemigrations
+              docker compose exec -T backend python manage.py migrate
+              
+              # RUN TESTS
               docker compose exec -T backend python manage.py test
               
-              # Cleanup
               docker compose down
               cd -
             fi
