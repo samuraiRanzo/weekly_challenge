@@ -1,11 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
-from rest_framework.test import APIClient
 
 class BaseCampHealthCheck(TestCase):
-    def setUp(self):
-        self.client = APIClient()
-
     def test_hello_endpoint(self):
         """Verify the Clean Slate backend is responding."""
         url = reverse('hello')
