@@ -1,6 +1,13 @@
 services:
   db:
     image: postgres:16-alpine
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    # The script will replace 'postgres_data' with a unique project name
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
@@ -10,13 +17,18 @@ services:
 
   backend:
     build: ./backend
-    volumes:
-      - ./backend:/code
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
     ports:
-      - "8000:8000"
+      - "8000:8000" # Script changes the first 8000 to BE_PORT
     env_file:
-      - path: .env
-        required: false
+      - .env
+    volumes:
+      - ./backend:/app
     depends_on:
       - db
     command: >
@@ -27,15 +39,22 @@ services:
 
   frontend:
     build: ./frontend
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    ports:
+      - "5173:5173" # Script changes the first 5173 to FE_PORT
+    env_file:
+      - .env
     volumes:
       - ./frontend:/app
       - /app/node_modules
-    ports:
-      - "5173:5173"
     depends_on:
       - backend
-    environment:
-      - VITE_API_URL=http://localhost:8000/apis/
+    # NOTE: We removed the environment block to prevent overriding the script-generated .env
 
 volumes:
-  postgres_data:
+  postgres_data: # Script will replace this with [project_name]_data

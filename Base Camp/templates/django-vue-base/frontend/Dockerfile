@@ -1,21 +1,16 @@
-# 1. Use a lightweight Node image
 FROM node:20-alpine
 
-# 2. Set working directory
 WORKDIR /app
 
-# 3. Copy package files first (to leverage Docker cache)
+# Install dependencies first (for better caching)
 COPY package*.json ./
-
-# 4. Install dependencies
 RUN npm install
 
-# 5. Copy the rest of the code
+# Copy the rest of the source code
 COPY . .
 
-# 6. Expose the Vite development port
+# Expose the Vite port (internally it's always 5173)
 EXPOSE 5173
 
-# 7. Start the development server
-# --host 0.0.0.0 is critical for Docker networking
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+# Run Vite with --host to allow external access
+CMD ["npm", "run", "dev", "--", "--host"]

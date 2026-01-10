@@ -5,8 +5,9 @@ SEASON=$1
 WEEK=$2
 PROJECT_NAME=$3
 KB_CHECKLIST="../../Base Camp/knowledge-base/django-postgres-checklist.md"
+PORT_REGISTRY="port_registry.txt"
 
-# Paths to the Modular Lego Pieces
+# Modular Lego Pieces Paths
 BACKEND_SRC="./templates/django-vue-base/shared-backend"
 INFRA_SRC="./templates/django-vue-base/shared-infra"
 
@@ -22,9 +23,22 @@ if [[ "$PWD" != *"/Base Camp" ]]; then
     exit 1
 fi
 
+# --- 1. SMART PORT CALCULATION ---
+# This ensures every project has unique ports in your homelab
+touch "$PORT_REGISTRY"
+LAST_OFFSET=$(tail -n 1 "$PORT_REGISTRY" | cut -d':' -f1)
+if [ -z "$LAST_OFFSET" ]; then
+    CURRENT_OFFSET=1
+else
+    CURRENT_OFFSET=$((LAST_OFFSET + 1))
+fi
+
+FE_PORT=$((5000 + CURRENT_OFFSET))
+BE_PORT=$((8000 + CURRENT_OFFSET))
+
 # --- Template Selection ---
 echo "🎨 Choose your Frontend Style:"
-echo "1)Base 2) Dashboard  3) Terminal 4) Minimalist"
+echo "1) Base  2) Dashboard  3) Terminal  4) Minimalist"
 read -p "Select [1-4]: " STYLE_CHOICE
 
 case $STYLE_CHOICE in
@@ -41,29 +55,42 @@ echo "📝 What is the primary goal for $WEEK?"
 read -p "> " WEEKLY_GOAL
 
 # --- Execution ---
-echo "🚀 Initializing: $WEEK | $PROJECT_NAME..."
+echo "🚀 Initializing: $WEEK | $PROJECT_NAME (Ports: FE:$FE_PORT, BE:$BE_PORT)..."
 
-# 1. Create Target Directory
-if [ -d "$TARGET_DIR" ]; then
-    echo "⚠️  Warning: $TARGET_DIR already exists. Skipping creation."
-else
-    mkdir -p "$TARGET_DIR"
-    echo "📁 Created folder: $TARGET_DIR"
-fi
+# Create Target Directory
+mkdir -p "$TARGET_DIR"
 
-# 2. Modular Assembly (The "Lego" Logic)
-echo "🏗️  Assembling pieces from $STYLE_NAME template..."
-
-# Inject Backend
+# 2. Modular Assembly
 rsync -av --quiet "$BACKEND_SRC/" "$TARGET_DIR/backend" --exclude .venv --exclude __pycache__
-
-# Inject Chosen Frontend
 rsync -av --quiet "$FE_SRC/" "$TARGET_DIR/frontend" --exclude node_modules --exclude .idea
-
-# Inject Infrastructure (docker-compose, etc.)
 rsync -av --quiet "$INFRA_SRC/" "$TARGET_DIR/"
 
-# 2.5 Personalize Frontend Brand Name
+# --- 3. INFRASTRUCTURE ORCHESTRATION (The Magic Part) ---
+SAFE_NAME=$(echo "$PROJECT_NAME" | tr '-' '_')
+sed -i "s/postgres_data/${SAFE_NAME}_db_data/g" "$TARGET_DIR/docker-compose.yml"
+
+# Update Docker Compose with unique ports
+if [ -f "$TARGET_DIR/docker-compose.yml" ]; then
+    sed -i "s/5173:5173/$FE_PORT:5173/g" "$TARGET_DIR/docker-compose.yml"
+    sed -i "s/8000:8000/$BE_PORT:8000/g" "$TARGET_DIR/docker-compose.yml"
+    echo "✅ Ports remapped in docker-compose.yml"
+fi
+
+# Update Frontend .env to point to the unique Backend port
+if [ -f "$TARGET_DIR/.env.example" ]; then
+    cp "$TARGET_DIR/.env.example" "$TARGET_DIR/.env"
+
+    # Injection: Replace the default 8000 with the NEW unique BE_PORT
+    # We use | as a delimiter in sed because the URL contains slashes /
+    sed -i "s|VITE_API_URL=.*|VITE_API_URL=http://localhost:$BE_PORT/|g" "$TARGET_DIR/.env"
+
+    echo "✅ Created .env and injected Port: $BE_PORT"
+fi
+
+# --- 4. SUCCESS LOGGING ---
+# Update the Registry for Mission Control
+echo "$CURRENT_OFFSET:$FE_PORT:$BE_PORT:$SEASON/$WEEK/$PROJECT_NAME" >> "$PORT_REGISTRY"
+# --- 5. CUSTOMIZATION OF BRANDING ---
 echo "🎨 Personalizing frontend brand..."
 # This matches whatever is inside the <h1> or <a> tag more reliably
 # Or just search for a simpler string that YOU know is in your template
@@ -78,44 +105,8 @@ if [ -f "$INDEX_HTML_PATH" ]; then
     sed -i "s|<title>.*</title>|<title>$FORMATTED_NAME</title>|g" "$INDEX_HTML_PATH"
 fi
 
-# 3. Setup Environment Files
-if [ -f "$TARGET_DIR/.env.example" ]; then
-    cp "$TARGET_DIR/.env.example" "$TARGET_DIR/.env"
-    echo "✅ Created .env from .env.example"
-fi
-
-# 4. Generate the Weekly README
-echo "📝 Customizing Weekly README..."
-cat <<EOT > "$TARGET_DIR/README.md"
-# $WEEK: ${PROJECT_NAME//-/ }
-> **Season:** $SEASON
-> **Status:** 🟡 In Progress
-> **Template:** Modular ($STYLE_NAME)
-
-## 🎯 Weekly Challenge Goal
-$WEEKLY_GOAL
-
-## 🛠️ Stack
-- **Frontend:** Vue 3 ($STYLE_NAME)
-- **Backend:** Shared Django Engine
-- **Database:** PostgreSQL 16
-- **Orchestration:** Docker Compose V2
-
-## 📅 Refactor Schedule
-- **Monday-Wednesday:** Feature implementation.
-- **Thursday:** Use the [Optimization Checklist]($KB_CHECKLIST).
-- **Friday:** Final testing and Launch.
-
-## 🚦 Getting Started
-1. \`cd $SEASON/$WEEK-$PROJECT_NAME\`
-2. \`docker compose up --build\`
-EOT
-
-# 5. Success Message
 echo "--------------------------------------------------------"
-echo "✨ $STYLE_NAME Project Ready!"
-echo "📍 Location: $TARGET_DIR"
-echo "💻 Next Steps:"
-echo "   1. cd \"$TARGET_DIR\""
-echo "   2. docker compose up"
+echo "✨ $STYLE_NAME Project Ready with Unique Ports!"
+echo "📍 FE: http://localhost:$FE_PORT"
+echo "📍 BE: http://localhost:$BE_PORT"
 echo "--------------------------------------------------------"
